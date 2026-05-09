@@ -2,8 +2,7 @@
 
 int main() {
 
-    int arr[100], visited[100];
-    int n, count;
+    int arr[100], n, temp;
 
     printf("Enter number of elements: ");
     scanf("%d", &n);
@@ -12,29 +11,27 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
-        visited[i] = 0;
     }
 
-    // Frequency logic
-    for (int i = 0; i < n; i++) {
-
-        // Skip already counted elements
-        if (visited[i] == 1) {
-            continue;
-        }
-
-        count = 1;
+    // Sorting
+    for (int i = 0; i < n - 1; i++) {
 
         for (int j = i + 1; j < n; j++) {
 
-            if (arr[i] == arr[j]) {
+            if (arr[i] > arr[j]) {
 
-                count++;
-                visited[j] = 1;
+                // Swap
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
         }
+    }
 
-        printf("%d -> %d times\n", arr[i], count);
+    printf("Sorted array:\n");
+
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
     }
 
     return 0;
